@@ -1,4 +1,5 @@
 class Content < ActiveRecord::Base
+  establish_connection :content
   content = Content.arel_table
   scope :contains_localhost, -> {where content[:url].matches('%://localhost/%').or content[:url].matches('%://localhost:%')}
 

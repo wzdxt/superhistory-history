@@ -34,6 +34,7 @@ gem 'devise'
 gem 'devise-encryptable'
 gem 'haml-rails'
 gem 'settingslogic'
+gem 'kaminari'
 
 group :production do
   # Use postgresql as the database for Active Record
