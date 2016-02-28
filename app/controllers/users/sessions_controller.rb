@@ -5,9 +5,10 @@ class Users::SessionsController < Devise::SessionsController
   def new
     if session_id = cookies[:dist_session_id]
       if dist_session = DistSession.find_by(:session_id => session_id)
-        data = JSON.parse dist_session.data, :symbolize_names => true
-        if user = User.find_by_id(data[:user_id])
-          return auth_sign_in(user)
+        if dist_session.data and data = JSON.parse(dist_session.data, :symbolize_names => true) and data[:user_id]
+          if user = User.find_by_id(data[:user_id])
+            return auth_sign_in(user)
+          end
         end
       end
     end
