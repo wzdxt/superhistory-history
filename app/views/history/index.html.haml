@@ -2,14 +2,18 @@
 %div
   = paginate @histories
   %br
-  - @histories.each do |history|
-    - if content = Content.find_by_id(history.content_id)
-      %div
-        .title
-          %span= content.id
-          %span .
-          = link_to content.title, content.url
-        .visit_time= l history.updated_at
-        .brief_content= content.search_content[0..200]
+  %table
+    %tr
+      %td
+        %div.content-list
+          - @histories.each do |history|
+            - if content = Content.find_by_id(history.content_id)
+              %div.content-item{'data-content-id':content.id}
+                .title
+                  = link_to content.title, content.url
+                .visit-time= l history.updated_at
+                .brief-content= content.search_content[0..200]
+      %td
+        %div.cache-view
   %br
   = paginate @histories
