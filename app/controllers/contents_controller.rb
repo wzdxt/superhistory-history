@@ -1,5 +1,11 @@
 class ContentsController < ApplicationController
+  layout false, :only => :cache
   def cache
-    @cache = nokogiri_parse(@content.cache).to_s if @content.cache.present?
+    if @content.cache.present?
+      doc = Nokogiri.parse @content.cache
+      doc.css('script, iframe, frameset, head, style').remove
+      @cache = doc.to_s
+    end
   end
 end
+

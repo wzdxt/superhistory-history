@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_objects
-    @content = Content.find(params[:content]) if params[:content]
+    @content = Content.find(params[:content_id]) if params[:content_id]
   end
 
   def nokogiri_parse string, url = nil, encoding = nil, options = nil
