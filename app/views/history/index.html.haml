@@ -8,13 +8,14 @@
         .content-list
           - @histories.each do |history|
             - if content = Content.find_by_id(history.content_id)
-              .content-item{'data-content-id':content.id}
+              .content-item{'data-content-id':content.id, 'data-content-url':content.url}
                 .title
                   = link_to content.title, content.url
                 .site-url= content.url
                 .visit-time= l history.updated_at
                 .brief-content= content.search_content[0..200]
       %td.cache-view-td
+        #iframe_img.hidden
         .cache-view
   %br
   = paginate @histories
