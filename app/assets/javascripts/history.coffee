@@ -4,8 +4,8 @@
 
 
 $ ->
+  current_content_id = undefined
   $('div.content-list div.content-item').each (idx, elem) ->
-    current_content_id = undefined
     content_id = $(elem).attr('data-content-id')
     $(elem).delegate 'div.brief-content', 'click', ->
       if content_id != current_content_id
